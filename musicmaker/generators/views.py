@@ -10,4 +10,9 @@ class GeneratorView(DetailView):
     template_name = 'generators/generator.html'
 
 def generator(request):
-    return HttpResponse('Unable to run the algorithm. Try again.')
+    try:
+        os.system('python3 train.py')
+        os.system('python3 predict.py')
+        os.system('python3 playsong.py')
+    except:
+        return HttpResponse('Unable to run the algorithm. Try again.')
